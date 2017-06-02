@@ -106,7 +106,7 @@ Content-Type: application/http
 Content-Transfer-Encoding:binary
 Content-ID:$i
 
-PATCH https://armsys-test.crm4.dynamics.com/api/data/v8.1/contacts($customerID) HTTP/1.1
+PATCH https://YOUT_CRM_INSTANCE.crm4.dynamics.com/api/data/v8.1/contacts($customerID) HTTP/1.1
 Content-Type: application/json;type=entry
 
 {"ftpsiteurl":"ftp://..."}
