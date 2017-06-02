@@ -1,7 +1,8 @@
 # RDynamics
-Dynamics CRM Web API - Lightweight PHP Connector
+Dynamics 365 Online CRM Web API - Lightweight PHP Connector
 
 Initializing:
+
     $RDynamics = new RDynamics(array(
         "base_url"              => "https://YOUR_CRM_INSTANCE.crm4.dynamics.com",
         "authEndPoint"          => "https://login.windows.net/common/oauth2/authorize",
