@@ -19,10 +19,10 @@ Querying contacts:
 
     $contactsResponse = $RDynamics->contacts->select('?$select=fullname');
     if($contactsResponse->isSuccess()) {
-        die(json_encode($contactsResponse->getData()));
+        // $contactsResponse->getData(); - Return data as array
     }
     else {
-        die($contactsResponse->getErrorMessage());
+        // $contactsResponse->getErrorMessage(); - Return CRM Web API error message as string
     }
 
 Querying contacts (when the number of contacts is more then 5000, you need paging):
@@ -31,8 +31,7 @@ Querying contacts (when the number of contacts is more then 5000, you need pagin
     do {
         if((isset($contactsResponse) && $contactsResponse)) {
             $endpoint = $contactsResponse->getNextLink();
-            if(!$endpoint) {
-                echo "END...";
+            if(!$endpoint) { // no next link defined, exiting
                 break;
             }
         }
@@ -42,16 +41,13 @@ Querying contacts (when the number of contacts is more then 5000, you need pagin
 
         $contactsResponse = $RDynamics->contacts->select($endpoint);
         if($contactsResponse->isSuccess()) {
-            echo "<br />-----------------PAGE " . $i . "-----------------<br />\n";
-            echo count($contactsResponse->getData()) . "contact<br />\n";
-            echo "<br />-----------------END OF PAGE " . $i . "-----------------<br />\n";
+            // $contactsResponse->getData(); // as array
             ++$i;
         }
         else {
-            die($contactsResponse->getErrorMessage());
+           // $contactsResponse->getErrorMessage(); // or ->getError() to get the full error object (with error_code and more)
         }
     } while($contactsResponse->getNextLink());
-    die("END OF PAGING");
 
 Inserting contact:
 
@@ -60,10 +56,10 @@ Inserting contact:
     ));
 
     if($contactsResponse->isSuccess()) {
-        die(var_dump($contactsResponse->getGuidCreated()));
+        // $contactsResponse->getGuidCreated(); - Get the GUID of the created entity
     }
     else {
-        die($contactsResponse->getErrorMessage());
+        // $contactsResponse->getErrorMessage(); - Get the error message as string
     }
 
 Updating contact
@@ -73,26 +69,22 @@ Updating contact
     ));
 
     if($contactsResponse->isSuccess()) {
-        die(json_encode(array(
-            "data"      => $contactsResponse->getData(),
-            "headers"   => $contactsResponse->getHeaders()
-        )));
+        // $contactsResponse->getData(); // Get the response data
+        // $contactsResponse->getHeaders(); // Get the response headers
     }
     else {
-        die($contactsResponse->getErrorMessage());
+        // $contactsResponse->getErrorMessage(); - Get the error message as string
     }
 
 Deleting contact:
 
     $contactsResponse = $RDynamics->contacts->delete('00000000-0000-0000-0000-000000000000');
     if($contactsResponse->isSuccess()) {
-        die(json_encode(array(
-            "data"      => $contactsResponse->getData(),
-            "headers"   => $contactsResponse->getHeaders()
-        )));
+        // $contactsResponse->getData(); - Get the response data
+        // $contactsResponse->getHeaders(); - Get the response headers
     }
     else {
-        die($contactsResponse->getErrorMessage());
+        // $contactsResponse->getErrorMessage(); - Get the error message as string
     }
 
 Running batch methods (max. 1000 request per batch):
