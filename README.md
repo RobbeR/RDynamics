@@ -41,11 +41,11 @@ Querying contacts (when the number of contacts is more then 5000, you need pagin
 
         $contactsResponse = $RDynamics->contacts->select($endpoint);
         if($contactsResponse->isSuccess()) {
-            // $contactsResponse->getData(); // as array
+            // $contactsResponse->getData(); - as array
             ++$i;
         }
         else {
-           // $contactsResponse->getErrorMessage(); // or ->getError() to get the full error object (with error_code and more)
+           // $contactsResponse->getErrorMessage(); - or ->getError() to get the full error object (with error_code and more)
         }
     } while($contactsResponse->getNextLink());
 
@@ -69,8 +69,8 @@ Updating contact
     ));
 
     if($contactsResponse->isSuccess()) {
-        // $contactsResponse->getData(); // Get the response data
-        // $contactsResponse->getHeaders(); // Get the response headers
+        // $contactsResponse->getData(); - Get the response data
+        // $contactsResponse->getHeaders(); - Get the response headers
     }
     else {
         // $contactsResponse->getErrorMessage(); - Get the error message as string
@@ -115,13 +115,11 @@ Running batch methods (max. 1000 request per batch):
         $payload .= "--" . $batchID . "--\n\n";
         $batchResponse = $RDynamics->performBatchRequest($payload, $batchID);
 
-        die(json_encode(array(
-            "data"      => $batchResponse->getData(),
-            "headers"   => $batchResponse->getHeaders()
-        )));
+        // $contactsResponse->getData(); - Get the response data
+        // $contactsResponse->getHeaders(); - Get the response headers
     }
     else {
-        die($contactsResponse->getErrorMessage());
+        // $contactsResponse->getErrorMessage(); - Get the error message as string
     }
 
 
