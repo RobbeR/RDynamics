@@ -1,3 +1,7 @@
+# RDynamics
+Dynamics CRM Web API - Lightweight PHP Connector
+
+Examples:
 
     $RDynamics = new RDynamics(array(
         "base_url"              => "https://YOUR_CRM_INSTANCE.crm4.dynamics.com",
@@ -121,3 +125,5 @@ EOT;
         else {
             die($contactsResponse->getErrorMessage());
         }
+
+
