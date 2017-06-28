@@ -355,7 +355,7 @@
         * @param $GUID - The GUID of the entity you want to update
         * @param $payload - On Insert/Update requests (POST/PATCH) the array of the fields to insert/update
         */
-        public function update($GUID, $payload) {
+        public function update($GUID, $payload, $extraHeaders = false) {
             return $this->performRequest('/' . $this->entity . '(' . $GUID . ')', 'PATCH', $payload, $extraHeaders, "update");
         }
 
@@ -364,7 +364,7 @@
         *
         * @param $GUID - The GUID of the entity you want to delete
         */
-        public function delete($GUID) {
+        public function delete($GUID, $extraHeaders = false) {
             return $this->performRequest('/' . $this->entity . '(' . $GUID . ')', 'DELETE', false, $extraHeaders, "delete");
         }
 
